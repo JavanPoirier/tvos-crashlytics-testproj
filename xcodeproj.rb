@@ -87,6 +87,7 @@ end
 
 puts "\n"
 # Set preprocessor macros and set header search path
+# You can find a list of all avaialble build settings here: https://help.apple.com/xcode/mac/11.4/#/itcaec37c2a6
 puts "Configuring build settings..."
 
 def set_build_setting(setting, value)
@@ -94,11 +95,12 @@ def set_build_setting(setting, value)
         setting = value
     elsif !setting.include?(value[0])
         if setting.instance_of? String
-            setting += value.join(" ")
+            setting += " #{value.join(" ")} "
         elsif setting.instance_of? Array
             setting.concat(value)
         end
     end
+    return setting
 end
 
 main_target.build_configurations.each do |config|
